@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  padding: 2rem;
+}
+
+.streamlist form {
+  margin-top: 1rem;
+}
+
+.streamlist input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.streamlist button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.streamlist button:hover {
+  background-color: #0056b3;
+}
