@@ -1,24 +1,19 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import StreamList from './components/StreamList';
-import Movies from './components/Movies';
-import Cart from './components/Cart';
-import About from './components/About';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import StreamList from "./components/StreamList";
+import Navbar from "./components/Navbar";
+import "./App.css";
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<StreamList />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<StreamList />} />
+        <Route path="/movies" element={<h2>Movies Page - Coming Soon</h2>} />
+        <Route path="/cart" element={<h2>Cart Page - Coming Soon</h2>} />
+        <Route path="/about" element={<h2>About Page - Coming Soon</h2>} />
+      </Routes>
     </Router>
   );
 }
