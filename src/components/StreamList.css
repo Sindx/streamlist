@@ -1,0 +1,55 @@
+.stream-list {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.stream-list h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stream-list form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stream-list input {
+  padding: 10px;
+  width: 300px;
+}
+
+.stream-list button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.stream-list button:hover {
+  background-color: #0056b3;
+}
+
+.stream-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.stream-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
