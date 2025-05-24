@@ -1,99 +1,85 @@
-import React, { useState } from "react";
-import "./StreamList.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from 'react';
+import './StreamList.css';
 
-function StreamList() {
-  const [input, setInput] = useState("");
-  const [list, setList] = useState([]);
-  const [isEditing, setIsEditing] = useState(null);
-  const [editText, setEditText] = useState("");
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-  // Add item to list
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const StreamList = () => {
+  const [input, setInput] = useState('');
+  const [list, setList] = useState(() => {
+    const stored = localStorage.getItem('streamList');
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('streamList', JSON.stringify(list));
+  }, [list]);
+
+  const handleAdd = () => {
     if (input.trim()) {
-      setList([...list, { id: Date.now(), text: input, completed: false }]);
-      setInput("");
+      const newItem = {
+        id: Date.now(),
+        text: input,
+        completed: false
+      };
+      setList([...list, newItem]);
+      setInput('');
     }
   };
 
-  // Delete item from list
   const handleDelete = (id) => {
     setList(list.filter((item) => item.id !== id));
   };
 
-  // Mark item as complete
   const handleComplete = (id) => {
-    setList(
-      list.map((item) =>
-        item.id === id ? { ...item, completed: !item.completed } : item
-      )
-    );
+    setList(list.map((item) =>
+      item.id === id ? { ...item, completed: !item.completed } : item
+    ));
   };
 
-  // Edit item
   const handleEdit = (id) => {
-    const itemToEdit = list.find((item) => item.id === id);
-    setIsEditing(id);
-    setEditText(itemToEdit.text);
-  };
-
-  const handleEditSubmit = (e, id) => {
-    e.preventDefault();
-    setList(
-      list.map((item) =>
-        item.id === id ? { ...item, text: editText } : item
-      )
-    );
-    setIsEditing(null);
-    setEditText("");
+    const newText = prompt('Edit title:');
+    if (newText) {
+      setList(list.map((item) =>
+        item.id === id ? { ...item, text: newText } : item
+      ));
+    }
   };
 
   return (
-    <div className="stream-list">
+    <div className="streamlist-container">
       <h2>Your Stream List</h2>
-      <form onSubmit={handleSubmit}>
+      <div className="input-group">
         <input
           type="text"
-          placeholder="Add a movie or show"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          placeholder="Add a movie or show"
         />
-        <button type="submit">Add</button>
-      </form>
-
-      <ul>
+        <button onClick={handleAdd}>Add</button>
+      </div>
+      <ul className="streamlist-ul">
         {list.map((item) => (
-          <li key={item.id} className={item.completed ? "completed" : ""}>
-            {isEditing === item.id ? (
-              <form onSubmit={(e) => handleEditSubmit(e, item.id)}>
-                <input
-                  type="text"
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                />
-                <button type="submit">Update</button>
-              </form>
-            ) : (
-              <>
-                {item.text}
-                <button onClick={() => handleComplete(item.id)}>
-                  <FontAwesomeIcon icon={faCheck} />
-                </button>
-                <button onClick={() => handleEdit(item.id)}>
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
-                <button onClick={() => handleDelete(item.id)}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </>
-            )}
+          <li key={item.id} className="streamlist-item">
+            <span style={{ textDecoration: item.completed ? 'line-through' : 'none' }}>
+              {item.text}
+            </span>
+            <div className="action-icons">
+              <button onClick={() => handleComplete(item.id)} title="Mark Complete">
+                <FontAwesomeIcon icon={faCheck} />
+              </button>
+              <button onClick={() => handleEdit(item.id)} title="Edit Title">
+                <FontAwesomeIcon icon={faEdit} />
+              </button>
+              <button onClick={() => handleDelete(item.id)} title="Delete">
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
           </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default StreamList;
