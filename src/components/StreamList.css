@@ -1,55 +1,65 @@
-.stream-list {
-  width: 60%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-}
-
-.stream-list h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.stream-list form {
+.streamlist-container {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  min-height: 100vh;
 }
 
-.stream-list input {
-  padding: 10px;
-  width: 300px;
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.stream-list button {
-  padding: 10px;
+.input-group input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 280px;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.input-group button {
+  padding: 0.5rem 1rem;
   background-color: #007bff;
-  color: #fff;
   border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.stream-list button:hover {
-  background-color: #0056b3;
-}
-
-.stream-list ul {
-  list-style-type: none;
+.streamlist-ul {
+  list-style: none;
   padding: 0;
+  width: 100%;
+  max-width: 700px;
 }
 
-.stream-list li {
+.streamlist-item {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  background-color: #fff;
-  margin-bottom: 5px;
-  border-radius: 5px;
+  align-items: center;
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.completed {
-  text-decoration: line-through;
-  color: gray;
+.action-icons button {
+  margin-left: 8px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.action-icons button:hover {
+  background-color: #0056b3;
 }
