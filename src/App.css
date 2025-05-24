@@ -46,3 +46,17 @@ body {
 .streamlist button:hover {
   background-color: #0056b3;
 }
+
+/* Centering Container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Optional cleanup for overall layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
