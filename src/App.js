@@ -1,21 +1,27 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import StreamList from "./components/StreamList";
-import Navbar from "./components/Navbar";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import StreamList from './components/StreamList';
+import MovieSearch from './components/MovieSearch';
+import Cart from './components/Cart';
+import About from './components/About';
 
-function App() {
+import './App.css'; // Make sure this line is included
+
+const App = () => {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<StreamList />} />
-        <Route path="/movies" element={<h2>Movies Page - Coming Soon</h2>} />
-        <Route path="/cart" element={<h2>Cart Page - Coming Soon</h2>} />
-        <Route path="/about" element={<h2>About Page - Coming Soon</h2>} />
-      </Routes>
+      <div className="container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<StreamList />} />
+          <Route path="/movies" element={<MovieSearch />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
     </Router>
   );
-}
+};
 
 export default App;
