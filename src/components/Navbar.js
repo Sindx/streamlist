@@ -1,36 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faFilm, faCartPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import "./Navbar.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
-function Navbar() {
+const Navbar = ({ cartItems }) => {
+  const cartCount = cartItems
+    .filter(item => item.quantity > 0)
+    .reduce((total, item) => total + item.quantity, 0);
+
   return (
     <nav className="navbar">
       <ul>
-        <li>
-          <Link to="/">
-            <FontAwesomeIcon icon={faHome} /> Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/movies">
-            <FontAwesomeIcon icon={faFilm} /> Movies
-          </Link>
-        </li>
-        <li>
-          <Link to="/cart">
-            <FontAwesomeIcon icon={faCartPlus} /> Cart
-          </Link>
-        </li>
-        <li>
-          <Link to="/about">
-            <FontAwesomeIcon icon={faInfoCircle} /> About
-          </Link>
-        </li>
+        <li><Link to="/">StreamList</Link></li>
+        <li><Link to="/movies">Movies</Link></li>
+        <li><Link to="/cart">
+          Cart <span className="cart-count">({cartCount})</span>
+        </Link></li>
+        <li><Link to="/about">About</Link></li>
       </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;

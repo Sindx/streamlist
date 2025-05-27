@@ -1,12 +1,16 @@
+// About.js
 import React from 'react';
+import './SharedPage.css';
 
-function About() {
+const About = () => {
   return (
-    <div className="about">
-      <h2>About Page</h2>
-      <p>Content will be available in Week 5.</p>
+    <div className="page-wrapper">
+      <div className="content-box">
+        <h2>About StreamList</h2>
+        <p>Coming Soon!</p>
+      </div>
     </div>
   );
-}
+};
 
 export default About;
