@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Cart from './components/Cart';
 import StreamList from './components/StreamList';
 import Movies from './components/Movies';
 import About from './components/About';
+import Cart from './components/Cart';
+import PaymentForm from './components/PaymentForm';
+import PrivateRoute from './components/PrivateRoute';
+import Login from './components/Login';
 import list from './data';
 
 import './App.css';
@@ -24,9 +27,18 @@ function App() {
       <Navbar cartItems={cartItems} />
       <Routes>
         <Route path="/" element={<StreamList />} />
-       <Route path="/movies" element={<Movies />} />
-		<Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute>
+              <PaymentForm />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );
