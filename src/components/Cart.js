@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Cart.css';
+import { Link } from 'react-router-dom';
+
 
 const Cart = ({ cartItems, setCartItems }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
@@ -34,6 +39,15 @@ const Cart = ({ cartItems, setCartItems }) => {
     .reduce((acc, item) => acc + item.price * item.quantity, 0)
     .toFixed(2);
 
+  const handleCheckout = () => {
+    const isLoggedIn = localStorage.getItem('userLoggedIn');
+    if (isLoggedIn === 'true') {
+      navigate('/checkout');
+    } else {
+      alert('You must be logged in to checkout.');
+    }
+  };
+
   return (
     <div className="cart-container">
       <h2>Your Cart</h2>
@@ -65,6 +79,7 @@ const Cart = ({ cartItems, setCartItems }) => {
       {cartItems.filter(item => item.quantity > 0).length > 0 && (
         <div className="cart-total">
           <h3>Total: ${total}</h3>
+          <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
         </div>
       )}
 
@@ -81,8 +96,22 @@ const Cart = ({ cartItems, setCartItems }) => {
             ))}
         </div>
       )}
+
+      <div className="login-simulation">
+        <button
+          onClick={() => {
+            localStorage.setItem('userLoggedIn', 'true');
+            alert('Simulated login complete');
+          }}
+        >
+          Simulate Login
+        </button>
+      </div>
     </div>
   );
 };
+<Link to="/checkout">
+  <button className="checkout-button">Proceed to Checkout</button>
+</Link>
 
 export default Cart;
